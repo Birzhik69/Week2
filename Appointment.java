@@ -2,58 +2,74 @@
 import java.util.Objects;
 import java.util.Scanner;
 public class Appointment{
-    private int appointmentId;
-    private String patientName;
-    private String doctorName;
-    public String date;
+    private int AppointmentID;
+    private String PatientName;
+    private String DoctorName;
+    public String Date;
 //Getters and setters
     public int getAppointmentId() {
-        return appointmentId;
+        return AppointmentID;
     }
 
-    public void setAppointmentId(int appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setAppointmentId(int appointmentID) {
+        if (appointmentID <= 0 || appointmentID >= 999) {
+            System.out.println("Invalid Patient ID");
+            appointmentID = 0;
+        }
+        AppointmentID = appointmentID;
     }
 
     public String getPatientName() {
-        return patientName;
+        return PatientName;
     }
 
     public void setPatientName(String patientName) {
-        this.patientName = patientName;
+        if (patientName != null && !patientName.trim().isEmpty()) {
+            this.PatientName = patientName;
+        } else {
+            System.out.println("Warning: Name cannot be empty!");
+        }
     }
 
     public String getDoctorName() {
-        return doctorName;
+        return DoctorName;
     }
 
     public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+        if (doctorName != null && !doctorName.trim().isEmpty()) {
+            this.DoctorName = doctorName;
+        } else {
+            System.out.println("Warning: Name cannot be empty!");
+        }
     }
 
     public String getDate() {
-        return date;
+        return Date;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        if (date != null && !date.trim().isEmpty()) {
+            this.Date = date;
+        } else {
+            System.out.println("Warning: date cannot be empty!");
+        }
     }
 
     @Override
     public String toString() {
         return "Appointment{" +
-                "appointmentId=" + appointmentId +
-                ", patientName='" + patientName + '\'' +
-                ", doctorName='" + doctorName + '\'' +
-                ", date=" + date +
+                "appointmentId=" + AppointmentID +
+                ", patientName='" + PatientName + '\'' +
+                ", doctorName='" + DoctorName + '\'' +
+                ", date=" + Date +
                 '}';
     }
 //Constructor
     public Appointment(int appointmentId, String patientName, String doctorName, String date) {
-        this.appointmentId = appointmentId;
-        this.patientName = patientName;
-        this.doctorName = doctorName;
-        this.date = date;
+        setAppointmentId(appointmentId);
+        setPatientName(patientName);
+        setDoctorName(doctorName);
+        setDate(date);
     }
     //FUNCTIONS
     public String reschedule(){ //Reschedule time
@@ -67,10 +83,10 @@ public class Appointment{
         System.out.print("Do you want to cancel the appointment? ");
         String newCancel = sc.nextLine();
         if (Objects.equals(newCancel, "Yes") || Objects.equals(newCancel, "YES") || Objects.equals(newCancel, "yes")) {
-            this.appointmentId = 0;
-            this.patientName = "-";
-            this.doctorName = "-";
-            this.date = "-";
+            this.AppointmentID = 0;
+            this.PatientName = "-";
+            this.DoctorName = "-";
+            this.Date = "-";
             return "Appointment canceled.";
         }
         else{

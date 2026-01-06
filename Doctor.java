@@ -3,27 +3,37 @@ public class Doctor{
         private String DoctorName;
         private String Specialization;
         private int ExperienceYears;
-        public int getDoctorID() {
-            return DoctorID;
-        }
     //Constructor
-        public Doctor(int doctorID, String doctorName, String specialization, int experienceYears) {
+    public Doctor(int doctorID, String doctorName, String specialization, int experienceYears) {
+        setDoctorID(doctorID);
+        setDoctorName(doctorName);
+        setSpecialization(specialization);
+        setExperienceYears(experienceYears);
+    }
+
+
+    public void setDoctorID(int doctorID) {
+            if (doctorID <= 0 || doctorID >= 9999999) {
+                System.out.println("Invalid Doctor ID");
+                doctorID = 0;
+            }
             DoctorID = doctorID;
-            DoctorName = doctorName;
-            Specialization = specialization;
-            ExperienceYears = experienceYears;
         }
 
-        public void setDoctorID(int doctorID) {
-            DoctorID = doctorID;
-        }
+    public int getDoctorID() {
+        return DoctorID;
+    }
 
-        public String getDoctorName() {
+    public String getDoctorName() {
             return DoctorName;
         }
 
         public void setDoctorName(String doctorName) {
-            DoctorName = doctorName;
+            if (doctorName != null && !doctorName.trim().isEmpty()) {
+                this.DoctorName = doctorName;
+            } else {
+                System.out.println("Warning: Name cannot be empty!");
+            }
         }
 
         public String getSpecialization() {
@@ -31,7 +41,11 @@ public class Doctor{
         }
 
         public void setSpecialization(String specialization) {
-            this.Specialization = specialization;
+            if (specialization != null && !specialization.trim().isEmpty()) {
+                this.Specialization = specialization;
+            } else {
+                System.out.println("Warning: Specialization cannot be empty!");
+            }
         }
 
         public int getExperienceYears() {
@@ -39,7 +53,12 @@ public class Doctor{
         }
 
         public void setExperienceYears(int experienceYears) {
-            this.ExperienceYears = experienceYears;
+            if (experienceYears >= 0) {
+                this.ExperienceYears = experienceYears;
+            } else {
+                System.out.println("Experience Years cannot be negative! Setting to 0.");
+                this.ExperienceYears = 0;
+            }
         }
         // To string
         @Override

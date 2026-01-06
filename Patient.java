@@ -1,32 +1,44 @@
-import java.util.Scanner;
 public class Patient{
-    private int patientId;
-    private String fullName;
-    private int age;
+    private int PatientID;
+    private String FullName;
+    private int Age;
     private String BloodType;
 //Getters and Setters
     public int getPatientId() {
-        return patientId;
+        return PatientID;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatientID(int patientID) {
+        if (patientID <= 0 || patientID >= 9999999) {
+            System.out.println("Invalid Patient ID");
+            patientID = 0;
+        }
+        PatientID = patientID;
     }
 
     public String getFullName() {
-        return fullName;
+        return FullName;
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        if (fullName != null && !fullName.trim().isEmpty()) {
+            this.FullName = fullName;
+        } else {
+            System.out.println("Warning: Name cannot be empty!");
+        }
     }
 
     public int getAge() {
-        return age;
+        return Age;
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age >= 0) {
+            this.Age = age;
+        } else {
+            System.out.println("Age cannot be negative! Setting to 0.");
+            this.Age = 0;
+        }
     }
 
     public String getBloodType() {
@@ -34,38 +46,42 @@ public class Patient{
     }
 
     public void setBloodType(String bloodType) {
-        BloodType = bloodType;
+        if (bloodType != null && !bloodType.trim().isEmpty()) {
+            this.BloodType = bloodType;
+        } else {
+            System.out.println("Warning: BloodType cannot be empty!");
+        }
     }
 //To string
     @Override
     public String toString() {
         return "Patient{" +
-                "patientId=" + patientId +
-                ", fullName='" + fullName + '\'' +
-                ", age=" + age +
+                "patientId=" + PatientID +
+                ", fullName='" + FullName + '\'' +
+                ", age=" + Age +
                 ", BloodType='" + BloodType + '\'' +
                 '}';
     }
 //Constructor
-    public Patient(int patientId, String fullName, int age, String bloodType) {
-        this.patientId = patientId;
-        this.fullName = fullName;
-        this.age = age;
-        BloodType = bloodType;
-    }
+public Patient(int patientId, String fullName, int age, String bloodType) {
+    setPatientID(patientId);
+    setFullName(fullName);
+    setAge(age);
+    setBloodType(bloodType);
+}
     public String IsMinor(){ //Check if patient is minor or not
-        if (age > 18){
-            return ("Not a minor");
+        if (Age < 18){
+            return ("Minor");
         }
         else{
-            return ("Minor");
+            return ("Not Minor");
         }
     }
     public String getAgeCategory(){  //Checks age category of patient
-        if (age < 18){
+        if (Age < 18){
             return ("Minor");
         }
-        if (age > 18 && age < 30){
+        if (Age < 30){
             return ("Adult");
         }
         else{
@@ -73,5 +89,4 @@ public class Patient{
 
         }
     }
-
 }
