@@ -1,3 +1,4 @@
+package model;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class Appointment{
 
     public void setAppointmentId(int appointmentID) {
         if (appointmentID <= 0 || appointmentID >= 999) {
-            System.out.println("Invalid Patient ID");
+            System.out.println("Invalid model.Patient ID");
             appointmentID = 0;
         }
         AppointmentID = appointmentID;
@@ -57,7 +58,7 @@ public class Appointment{
 
     @Override
     public String toString() {
-        return "Appointment{" +
+        return "model.Appointment{" +
                 "appointmentId=" + AppointmentID +
                 ", patientName='" + PatientName + '\'' +
                 ", doctorName='" + DoctorName + '\'' +
@@ -87,7 +88,7 @@ public class Appointment{
             this.PatientName = "-";
             this.DoctorName = "-";
             this.Date = "-";
-            return "Appointment canceled.";
+            return "model.Appointment canceled.";
         }
         else{
             return ("No changes");

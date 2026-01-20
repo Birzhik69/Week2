@@ -1,4 +1,6 @@
-public class Person {
+package model;
+
+public abstract class Person {
     protected int id;
     protected String name;
     protected int age;
@@ -10,6 +12,13 @@ public class Person {
         this.age = age;
         this.phoneNumber = phoneNumber;
     }
+    public void displayInfo(){
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+    public abstract void NewWork();
+    public abstract String getNewRole();
     // Getters
     public int getId() {return id;}
     public String getName() { return name; }
@@ -17,15 +26,24 @@ public class Person {
     public String phoneNumber() { return phoneNumber; }
     // Setters
     public void setId(int id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+            if (name == null || name.trim().isEmpty()) {
+                throw new IllegalArgumentException("Name cannot be empty");
+            }
+            this.name = name;
+    }
     public void setAge(int age) {
-        if (age >= 0) this.age = age;
-        else System.out.println("Invalid age");
+        if (age < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
+        this.age = age;
+
     }
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
-            this.phoneNumber = phoneNumber.trim();
+        if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException("PhoneNumber cannot be empty");
         }
+        this.phoneNumber = phoneNumber;
     }
     public void work() {
         System.out.println(name + " is in the hospital.");

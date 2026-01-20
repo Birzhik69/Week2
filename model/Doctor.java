@@ -1,4 +1,8 @@
-public class Doctor{
+package model;
+
+import hospitalmenu.Manageable;
+
+public class Doctor implements Manageable {
         private int DoctorID;
         private String DoctorName;
         private String Specialization;
@@ -14,7 +18,7 @@ public class Doctor{
 
     public void setDoctorID(int doctorID) {
             if (doctorID <= 0 || doctorID >= 9999999) {
-                System.out.println("Invalid Doctor ID");
+                System.out.println("Invalid model.Doctor ID");
                 doctorID = 0;
             }
             DoctorID = doctorID;
@@ -63,7 +67,7 @@ public class Doctor{
         // To string
         @Override
         public String toString() {
-            return "Doctor{" +
+            return "model.Doctor{" +
                     "DoctorID=" + DoctorID +
                     ", DoctorName='" + DoctorName + '\'' +
                     ", Specialization='" + Specialization + '\'' +
@@ -86,4 +90,14 @@ public class Doctor{
                 return ("Cannot perform Surgery");
             }
         }
+//Abstract class
+    @Override
+    public void startTreatment() {
+        System.out.println(DoctorName + " has started treatment.");
     }
+
+    @Override
+    public void finishTreatment() {
+        System.out.println(DoctorName + " has ended treatment.");
+    }
+}

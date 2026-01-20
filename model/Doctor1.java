@@ -1,4 +1,6 @@
-public class Doctor1 extends Person{
+package model;
+
+public class Doctor1 extends Person {
     private String specialization;
     private  int experienceYears;
     //Constructor
@@ -11,33 +13,51 @@ public class Doctor1 extends Person{
         return specialization;
     }
     public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Specialization cannot be empty");
+        }
+        this.name = name;
     }
     public int getExperienceYears() {
         return experienceYears;
     }
     public void setExperienceYears(int experienceYears) {
-        if (experienceYears >= 0) {
-            this.experienceYears = experienceYears;
+        if (experienceYears < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
         }
+        this.experienceYears = experienceYears;
+
     }
     // Override method 1
     @Override
     public void work() {
-        System.out.println("Doctor " + name + " is treating patients(" + specialization + ", " + experienceYears + " years).");;
+        System.out.println("model.Doctor " + name + " is treating patients(" + specialization + ", " + experienceYears + " years).");;
     }
+
     // Override method 2
     @Override
     public String getRole() {
-        return "Doctor1";
+        return "model.Doctor1";
+    }
+    //Abstract methods
+    @Override
+    public void NewWork(){
+        System.out.println("model.Doctor " + name + "is performing surgery and his specialization is " + specialization );
+    }
+    public void startTreatment() {
+        System.out.println(name + " has started treatment.");
+    }
+    @Override
+    public String getNewRole() {
+        return "model.Doctor1";
     }
     //Unique method
     public void diagnosePatient(String patientName) {
-        System.out.println("Doctor " + name + " diagnosed patient: " + patientName);
+        System.out.println("model.Doctor " + name + " diagnosed patient: " + patientName);
     }
     // Another unique method
     public void prescribeMedicine(String medicine) {
-        System.out.println("Doctor " + name + " prescribed: " + medicine);
+        System.out.println("model.Doctor " + name + " prescribed: " + medicine);
     }
     public boolean isExperienced() {
         return experienceYears >= 5;

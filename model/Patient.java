@@ -1,4 +1,8 @@
-public class Patient{
+package model;
+
+import hospitalmenu.Manageable;
+
+public class Patient implements Manageable {
     private int PatientID;
     private String FullName;
     private int Age;
@@ -10,7 +14,7 @@ public class Patient{
 
     public void setPatientID(int patientID) {
         if (patientID <= 0 || patientID >= 9999999) {
-            System.out.println("Invalid Patient ID");
+            System.out.println("Invalid model.Patient ID");
             patientID = 0;
         }
         PatientID = patientID;
@@ -55,14 +59,24 @@ public class Patient{
 //To string
     @Override
     public String toString() {
-        return "Patient{" +
+        return "model.Patient{" +
                 "patientId=" + PatientID +
                 ", fullName='" + FullName + '\'' +
                 ", age=" + Age +
                 ", BloodType='" + BloodType + '\'' +
                 '}';
     }
-//Constructor
+    //Abstract methods
+    @Override
+    public void startTreatment() {
+        System.out.println(FullName + " has started treatment.");
+    }
+    @Override
+    public void finishTreatment() {
+        System.out.println(FullName + " has completed treatment.");
+    }
+
+    //Constructor
 public Patient(int patientId, String fullName, int age, String bloodType) {
     setPatientID(patientId);
     setFullName(fullName);
