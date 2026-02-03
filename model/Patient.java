@@ -1,7 +1,5 @@
 package model;
-
 import hospitalmenu.Manageable;
-
 public class Patient implements Manageable {
     private int PatientID;
     private String FullName;
@@ -11,7 +9,6 @@ public class Patient implements Manageable {
     public int getPatientId() {
         return PatientID;
     }
-
     public void setPatientID(int patientID) {
         if (patientID <= 0 || patientID >= 9999999) {
             System.out.println("Invalid model.Patient ID");
@@ -19,7 +16,6 @@ public class Patient implements Manageable {
         }
         PatientID = patientID;
     }
-
     public String getFullName() {
         return FullName;
     }
@@ -102,5 +98,9 @@ public Patient(int patientId, String fullName, int age, String bloodType) {
             return ("Elders");
 
         }
+    }
+
+    public String getName() {
+        return null;
     }
 }

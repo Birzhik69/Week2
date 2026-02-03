@@ -14,8 +14,6 @@ public class Doctor implements Manageable {
         setSpecialization(specialization);
         setExperienceYears(experienceYears);
     }
-
-
     public void setDoctorID(int doctorID) {
             if (doctorID <= 0 || doctorID >= 9999999) {
                 System.out.println("Invalid model.Doctor ID");
